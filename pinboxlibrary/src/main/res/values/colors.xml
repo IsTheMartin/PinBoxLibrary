@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#bebebe</color>
+    <color name="colorPrimaryContrast">#000000</color>
+
+    <color name="colorPrimaryDark">#232323</color>
+    <color name="colorPrimaryDarkContrast">#ffffff</color>
+
+    <color name="colorTransparent">#0000000</color>
+</resources>
