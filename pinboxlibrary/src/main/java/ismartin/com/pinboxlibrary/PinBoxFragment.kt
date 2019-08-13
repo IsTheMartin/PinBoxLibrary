@@ -67,25 +67,30 @@ class PinBoxFragment : Fragment(), View.OnClickListener, View.OnLongClickListene
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id){
-            R.id.btnDone ->{
+        when (p0?.id) {
+            R.id.btnDone -> {
+            }
+            R.id.btnBackspace -> {
+                eraseOneNumber()
             }
             else -> {
                 val buttonPressed: Button = p0 as Button
-                val inputNumber: String=buttonPressed.text.split("btn", "ok")[0]
+                val inputNumber: String = buttonPressed.text.split("btn", "ok")[0]
                 concatStringNumbers(inputNumber)
             }
         }
     }
 
     override fun onLongClick(p0: View?): Boolean {
-        when(p0?.id){
-
+        when (p0?.id) {
+            R.id.btnBackspace -> {
+                eraseAllNumbers()
+            }
         }
         return true
     }
 
-    fun initViews(view: View){
+    fun initViews(view: View) {
         var b0 = view.findViewById<Button>(R.id.btn0)
         var b1 = view.findViewById<Button>(R.id.btn1)
         var b2 = view.findViewById<Button>(R.id.btn2)
@@ -97,6 +102,7 @@ class PinBoxFragment : Fragment(), View.OnClickListener, View.OnLongClickListene
         var b8 = view.findViewById<Button>(R.id.btn8)
         var b9 = view.findViewById<Button>(R.id.btn9)
         var bDone = view.findViewById<Button>(R.id.btnDone)
+        var bBackspace = view.findViewById<Button>(R.id.btnBackspace)
 
         b0.setOnClickListener(this)
         b1.setOnClickListener(this)
@@ -109,36 +115,43 @@ class PinBoxFragment : Fragment(), View.OnClickListener, View.OnLongClickListene
         b8.setOnClickListener(this)
         b9.setOnClickListener(this)
         bDone.setOnClickListener(this)
+        bBackspace.setOnClickListener(this)
+        bBackspace.setOnLongClickListener(this)
     }
 
-    fun initStateMachine(){
-
+    fun initStateMachine() {
+        val pinSaved: String? = App.prefs!!.pinSaved
+        if (pinSaved.isNullOrBlank()){
+            stateMachine = 0
+        } else {
+            stateMachine = 1
+        }
     }
 
-    fun concatStringNumbers(stringNumber: String){
-        if(currentPin.length < 5){
+    fun concatStringNumbers(stringNumber: String) {
+        if (currentPin.length < 5) {
             currentPin += stringNumber
             etPin.setText(currentPin)
         }
     }
 
-    fun eraseOneNumber(){
-        if (currentPin.isNotEmpty()){
+    fun eraseOneNumber() {
+        if (currentPin.isNotEmpty()) {
             currentPin = currentPin.substring(0, currentPin.length - 1)
             etPin.setText(currentPin)
         }
     }
 
-    fun eraseAllNumbers(){
-        if(currentPin.isNotEmpty()){
+    fun eraseAllNumbers() {
+        if (currentPin.isNotEmpty()) {
             currentPin = ""
             etPin.setText(currentPin)
         }
     }
 
-    fun pinManagment(view: View){
-        if(currentPin.length > 3){
-            when(stateMachine) {
+    fun pinManagment(view: View) {
+        if (currentPin.length > 3) {
+            when (stateMachine) {
                 0 -> {
 
                 }
@@ -154,8 +167,8 @@ class PinBoxFragment : Fragment(), View.OnClickListener, View.OnLongClickListene
         }
     }
 
-    fun showInfoMessage(typeInfo: Int, message: String){
-        when(typeInfo){
+    fun showInfoMessage(typeInfo: Int, message: String) {
+        when (typeInfo) {
             0 -> { //Info
                 tvInfo.setTextColor(Color.BLUE)
             }

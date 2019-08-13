@@ -35,6 +35,16 @@
             android:layout_marginEnd="16dp" app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintBottom_toBottomOf="@+id/btn0"/>
     <Button
+            android:layout_width="@dimen/numeric_button_size"
+            android:layout_height="@dimen/numeric_button_size"
+            android:id="@+id/btnBackspace"
+            android:background="@drawable/numeric_button" android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="@+id/btn0" android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn0" android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" app:layout_constraintHorizontal_bias="1.0"/>
+    <Button
             android:text="@string/number_7"
             android:layout_width="@dimen/numeric_button_size"
             android:layout_height="@dimen/numeric_button_size"
